@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorPrimary"/>    <!-- Aca se establece el color del drawable del splashScreen-->
+    <item>
+        <bitmap android:src="@drawable/app"
+            android:gravity="center"/>
+    </item>
+
+</layer-list>

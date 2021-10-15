@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FireBaseTutorial</string>
+    <string name="prefs_file">com.example.firebasetutorial.PREFERENCE_FILE_KEY</string>
+
+    <string name="facebook_app_id">371327938023542</string>
+    <string name="fb_login_protocol_scheme">fb371327938023542</string>
+
+</resources>
