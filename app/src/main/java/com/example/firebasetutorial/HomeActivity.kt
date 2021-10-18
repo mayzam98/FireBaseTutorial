@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firestore.v1.FirestoreGrpc
@@ -117,13 +118,19 @@ class HomeActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
 
-            db.collection("users").document(email).set(
-                hashMapOf("provider" to provider,
-                "address" to addressTextView.text.toString(),
-                "phone" to phoneTextView.text.toString())
-            )
+           FirebaseMessaging.getInstance().getToken().addOnCompleteListener {
+              it.result//IMPORTANTE: ACA ESTOY OPTENIENDO EL identificador unico del dispositivo LO DEBO GUARDAR EN FIREBASE, PARA LUEGO PODER ENVIAR NOTIFICACIONES PERSONALIZADAS Y DEBIDAMENTE SEGMENTADAS
+               println("####Este es el token: ${it.result}")
+               
 
+                db.collection("users").document(email).set(
+                    hashMapOf("provider" to provider,
+                        "address" to addressTextView.text.toString(),
+                        "phone" to phoneTextView.text.toString(),
+                        "tokenCel" to it.result.toString())
 
+                )
+           }
 
         }
 
